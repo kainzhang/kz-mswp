@@ -1,0 +1,106 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOKKA's Market</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet/less" type="text/css" href="{% static 'css/styles.less' %}">
+    <script>
+		less = {
+		  env: "development",
+		  async: false,
+		  fileAsync: false,
+		  poll: 1000,
+		  functions: {},
+		  dumpLineNumbers: "comments",
+		  relativeUrls: false,
+		  rootpath: ":/a.com/"
+		};
+	</script>
+    {% block header %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <a id="logo" href="{% url 'index' %}">LOKKA</a>
+        <ul id="nav">
+            <li class="nav-item"><a class="fc-item" href="#">Difficulty<span class="arrow arrow-down"></span></a>&nbsp;
+                <ul class="nav-item-child">
+                    <li><a href="">Beginner</a></li>
+                    <li><a href="">Intermediate</a></li>
+                    <li><a href="">Expert</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="fc-item" href="#">Rank<span class="arrow arrow-down"></span></a>&nbsp;
+                <ul class="nav-item-child">
+                    <li><a href="{% url 'record:record_list'%}?difficulty=1">Beginner</a></li>
+                    <li><a href="{% url 'record:record_list'%}?difficulty=2">Intermediate</a></li>
+                    <li><a href="{% url 'record:record_list'%}?difficulty=3">Expert</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="fc-item" href="#">COMMUNITY</a></li>
+            <li class="nav-item"><a class="fc-item" href="#">SUPPORT</a></li>
+        </ul>
+        <div id="user-interaction">
+            {% if user.is_authenticated %}
+                <span>Hello, {{ user.username }}</span>
+                <a href="{% url 'logout' %}?from={{ request.get_full_path }}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}?from={{ request.get_full_path }}">Login</a>
+                <a href="{% url 'register' %}?from={{ request.get_full_path }}">Register</a>
+            {% endif %}
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div id="upper-content">
+            <div id="upper-content-part-1">
+                <h3>RELEVANT LINKS</h3>
+                <P>Feel free to visit our fellow website and <br />learn anything about programming.</P>
+                <ul>
+                    <li><span class="arrow arrow-right"></span><a href="http://w3school.com.cn/">W3school.com</a></li>
+                    <li><span class="arrow arrow-right"></span><a href="http://runoob.com/">Runoob.com</a></li>
+                    <li><span class="arrow arrow-right"></span><a href="https://less.bootcss.com/">Less.bootcss.com</a></li>
+                    <li><span class="arrow arrow-right"></span><a href="http://stackoverflow.com/">Stackoverflow.com</a></li>
+                    <li><span class="arrow arrow-right"></span><a href="https://github.com/">Github.com</a></li>
+                </ul>
+            </div>
+            <div id="upper-content-part-2">
+                <h3>CONTACT US</h3>
+                <ul>
+                    <li><a href="#"><img src="{% static 'img/twitter.png' %}" alt="Twitter" /></a></li>
+                    <li><a href="#"><img src="{% static 'img/line.png' %}" alt="Line" /></a></li>
+                    <li><a href="#"><img src="{% static 'img/facebook.png' %}" alt="Facebook" /></a></li>
+                    <li><a href="#"><img src="{% static 'img/linkedin.png' %}" alt="LinkedIn" /></a></li>
+                    <li><a href="#"><img src="{% static 'img/instagram.png' %}" alt="Instagram" /></a></li>
+                </ul>
+                <br />
+                <img id="qrcode" src="{% static 'img/lokka.png' %}" alt="" />
+            </div>
+            <div id="upper-content-part-3">
+                <h3>DOWNLOAD LOKKA APP</h3>
+                <img src="{% static 'img/app-store-logo.png' %}" alt="App Store" />
+                <img src="{% static 'img/google-play-logo.png' %}" alt="Google Play" />
+                <p>Have LOKKA on your iPhone and Android devices and
+                    check your market anywhere, anytime.
+                    Don’t wait! Download the app today and:
+                </p>
+                <ul>
+                    <li>Get unlimited access to LOKKA content.</li>
+                    <li>Your devices are automatically synced.</li>
+                    <li>Manage when you can focus—make good use of your commute time.</li>
+                </ul>
+            </div>
+        </div>
+        <div id="lower-content">
+            <span id="lower-content-logo">LOKKA</span>
+            <span id="lower-content-sign">© 2019</span>
+        </div>
+    </footer>
+	<script type="text/javascript" src="{% static 'js/less.min.js' %}" ></script>
+</body>
+</html>

@@ -6,11 +6,11 @@ from django import forms
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label=False, widget=forms.TextInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Username'}
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Username'}
     ))
-    password = forms.CharField(label=False, widget=forms.PasswordInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Password'}
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Password'}
     ))
 
     def clean(self):
@@ -26,16 +26,16 @@ class LoginForm(forms.Form):
 
 class RegForm(forms.Form):
     username = forms.CharField(max_length=16, min_length=6, widget=forms.TextInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Username'}
+        attrs={'class': 'form-control', 'placeholder': 'Username'}
     ))
     email = forms.EmailField(max_length=30, widget=forms.EmailInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Email'}
+        attrs={'class': 'form-control', 'placeholder': 'Email'}
     ))
     password = forms.CharField(max_length=24, min_length=8, widget=forms.PasswordInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Password'}
+        attrs={'class': 'form-control', 'placeholder': 'Password'}
     ))
     confirm_password = forms.CharField(max_length=24, min_length=8, widget=forms.PasswordInput(
-        attrs={'class': 'form-item-text', 'placeholder': 'Confirm Password'}
+        attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}
     ))
 
     def clean(self):

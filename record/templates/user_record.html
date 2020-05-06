@@ -2,30 +2,35 @@
 
 {% block content %}
 
-    <div class="page">
-    <div class="content">
-        <h2>Player:&nbsp;{{ player_name }}</h2>
-        <div class="content-table">
-            <table id="hor-minimalist-b">
-                <thead>
-                <tr>
-                    <th scope="col">Difficulty</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for record in object_list %}
-                <tr>
-                    <td>{{ record.get_difficulty_display }}</td>
-                    <td>{{ record.finish_time }}&nbsp;s</td>
-                    <td>{{ record.create_time }}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <br>
+                <h2>PLAYER:&nbsp;{{ player_name }}</h2>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in object_list %}
+                        <tr>
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td>{{ record.get_difficulty_display }}</td>
+                            <td>{{ record.finish_time }}&nbsp;s</td>
+                            <td>{{ record.create_time }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+            </div>
         </div>
     </div>
-	</div>
 
 {% endblock %}

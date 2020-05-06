@@ -1,32 +1,55 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/minesweeper.js' %}"></script>
+{% endblock %}
 
 {% block content %}
 
-    <div id="index-content">
-		<a href="" id="index-content-img-1">
-			<div id="index-content-img-title">
-				<p>&nbsp;&nbsp;Goods</p>
-				<p>Management</p>
-			</div>
-		</a>
-		<a href="" id="index-content-img-2">
-			<div id="index-content-img-title">
-				<p>&nbsp;&nbsp;Vip</p>
-				<p>Management</p>
-			</div>
-		</a>
-		<a href="" id="index-content-img-3">
-			<div id="index-content-img-title">
-				<p>&nbsp;&nbsp;Staff</p>
-				<p>Management</p>
-			</div>
-		</a>
-		<a href="" id="index-content-img-4">
-			<div id="index-content-img-title">
-				<p>&nbsp;&nbsp;Sale</p>
-				<p>Management</p>
-			</div>
-		</a>
-	</div>
+    <div class="container">
+        <div class="card rounded ">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:"
+                               onclick="init(10,10,10); setDifficulty(1);">Beginner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:" onclick="init(16,16,40); setDifficulty(2)">Intermediate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:" onclick="init(30,16,99); setDifficulty(3)">Expert</a>
+                        </li>
+                    </ul>
+
+                    <div id="mswp-submenu">
+                        Mine：<span id="lastnum"></span>
+                        Time：<span id="time"></span>s
+                        <span id="warning" style="color:red;"></span>
+                    </div>
+                    <div id="mswp-container">
+
+                    </div>
+                    <form id="record-form" action="{% url 'record:record_insert' %}" method="post"> {% csrf_token %}
+                        <input type="text" name="player" value="{{ user.id }}" hidden>
+                        <select id="difficulty" name="difficulty" hidden>
+                            <option value="1">Beginner</option>
+                            <option value="2">Intermediate</option>
+                            <option value="3">Expert</option>
+                            <option value="4">Custom</option>
+                        </select>
+                        <input type="text" id="finish_time" name="finish_time" hidden>
+                    </form>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
+

@@ -2,32 +2,35 @@
 
 {% block content %}
 
-    <div id="signup-content">
-    <div id="signup-content-banner">
-    	<h1>Create Your LOKKA ID</h1>
-    </div>
-    <div id="signup-content-pane">
-		<form method="post"> {% csrf_token %}
-        	<table>
-                {% for field in form %}
-                <tr>
-                    <td colspan="4">{{ field }}</td>
-                </tr>
-                {% endfor %}
-              	<tr>
-                    <td id="signup-hint">
+    <div class="container">
+        <div class="row">
+        <div class="col-xl-5">
+            <div class="card rounded ">
+                <div class="card-body">
+                    <br>
+                    <h2>Create your LOKKA ID.</h2>
+                    <br>
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
                         {% if form.non_field_errors %}
-                            {{ form.non_field_errors }}
+                            <div class="alert alert-danger" role="alert">{{ form.non_field_errors }}</div>
                         {% else %}
-                            <span>&nbsp;</span>
+                            <br><br>
                         {% endif %}
-  				    </td>
-                </tr>
-
-           		<tr><td colspan="4"><input type="submit" value="Sign up" ></td></tr>
-       		</table>
-       </form>
-   </div>
-   </div>
+                        <input type="submit" class="btn btn-primary" value="Sign up">
+                        &nbsp;<a href="{% url 'login' %}">Already have an account? Login now!</a>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 
 {% endblock %}

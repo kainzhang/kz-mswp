@@ -2,30 +2,39 @@
 
 {% block content %}
 
-    <div class="page">
-    <div class="content">
-        <h2>Difficulty:&nbsp;{{ difficulty }}</h2>
-        <div class="content-table">
-            <table id="hor-minimalist-b">
-                <thead>
-                <tr>
-                    <th scope="col">Player</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Date</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for record in object_list %}
-                <tr>
-                    <td><a href="{% url 'record:user_record' %}?player_id={{ record.player_id }}">{{ record.player }}</a></td>
-                    <td>{{ record.finish_time }}&nbsp;s</td>
-                    <td>{{ record.create_time }}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <br>
+                <h3>DIFFICULTY:&nbsp;{{ difficulty }}</h3>
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Player</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in object_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ record.player_id }}</td>
+                            <td>
+                                <a href="{% url 'record:user_record' %}?player_id={{ record.player_id }}">{{ record.player }}</a>
+                            </td>
+                            <td>{{ record.finish_time }}&nbsp;s</td>
+                            <td>{{ record.create_time }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+            </div>
         </div>
     </div>
-	</div>
 
 {% endblock %}

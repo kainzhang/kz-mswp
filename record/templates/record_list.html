@@ -5,9 +5,13 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <br>
-                <h3>DIFFICULTY:&nbsp;{{ difficulty }}</h3>
-                <br>
+                <div class="jumbotron" style="padding: 25px; background: #fff; margin: 0">
+                  <h3 class="display-6">Difficulty: {{ difficulty }}</h3>
+                    <hr class="my-3">
+                    <a href="{% url 'record:record_list'%}?difficulty=1" class="badge badge-primary">Beginner</a>
+                    <a href="{% url 'record:record_list'%}?difficulty=2" class="badge badge-success">Intermediate</a>
+                    <a href="{% url 'record:record_list'%}?difficulty=3" class="badge badge-danger">Expert</a>
+                </div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -24,7 +28,7 @@
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ record.player_id }}</td>
                             <td>
-                                <a href="{% url 'record:user_record' %}?player_id={{ record.player_id }}">{{ record.player }}</a>
+                                <a href="{% url 'record:user_record' %}?player_id={{ record.player_id }}&difficulty=1">{{ record.player }}</a>
                             </td>
                             <td>{{ record.finish_time }}&nbsp;s</td>
                             <td>{{ record.create_time }}</td>

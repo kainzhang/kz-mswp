@@ -129,14 +129,29 @@ function openBlock(x, y) {
             if (inGame) { //点击到周边无雷的方块时，自动揭开周围方块
                 countNum--;
                 var row = mineArray.length - 2, col = mineArray[0].length - 2;
-                if (x > 1 && y > 1 && $('#b' + (x - 1) + '-' + (y - 1)).hasClass('hidden')) openBlock(x - 1, y - 1);
-                if (x > 1 && $('#b' + (x - 1) + '-' + y).hasClass('hidden')) openBlock(x - 1, y);
-                if (x > 1 && y < col && $('#b' + (x - 1) + '-' + (y + 1)).hasClass('hidden')) openBlock(x - 1, y + 1);
-                if (y < col && $('#b' + x + '-' + (y + 1)).hasClass('hidden')) openBlock(x, y + 1);
-                if (x < row && y < col && $('#b' + (x + 1) + '-' + (y + 1)).hasClass('hidden')) openBlock(x + 1, y + 1);
-                if (x < row && $('#b' + (x + 1) + '-' + y).hasClass('hidden')) openBlock(x + 1, y);
-                if (x < row && y > 1 && $('#b' + (x + 1) + '-' + (y - 1)).hasClass('hidden')) openBlock(x + 1, y - 1);
-                if (y > 1 && $('#b' + x + '-' + (y - 1)).hasClass('hidden')) openBlock(x, y - 1);
+                if (x > 1 && y > 1 && $('#b' + (x - 1) + '-' + (y - 1)).hasClass('hidden'))
+                    openBlock(x - 1, y - 1);
+
+                if (x > 1 && $('#b' + (x - 1) + '-' + y).hasClass('hidden'))
+                    openBlock(x - 1, y);
+
+                if (x > 1 && y < col && $('#b' + (x - 1) + '-' + (y + 1)).hasClass('hidden'))
+                    openBlock(x - 1, y + 1);
+
+                if (y < col && $('#b' + x + '-' + (y + 1)).hasClass('hidden'))
+                    openBlock(x, y + 1);
+
+                if (x < row && y < col && $('#b' + (x + 1) + '-' + (y + 1)).hasClass('hidden'))
+                    openBlock(x + 1, y + 1);
+
+                if (x < row && $('#b' + (x + 1) + '-' + y).hasClass('hidden'))
+                    openBlock(x + 1, y);
+
+                if (x < row && y > 1 && $('#b' + (x + 1) + '-' + (y - 1)).hasClass('hidden'))
+                    openBlock(x + 1, y - 1);
+
+                if (y > 1 && $('#b' + x + '-' + (y - 1)).hasClass('hidden'))
+                    openBlock(x, y - 1);
             }
         }
     }

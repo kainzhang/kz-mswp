@@ -56,7 +56,10 @@ class RegForm(forms.Form):
 
 
 def index(request):
-    return render(request, "index.html")
+    if request.user.is_authenticated:
+        return render(request, "index.html")
+    else:
+        return redirect('login')
 
 
 def login(request):

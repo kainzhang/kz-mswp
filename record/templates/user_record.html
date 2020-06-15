@@ -5,9 +5,13 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <br>
-                <h2>PLAYER:&nbsp;{{ player_name }}</h2>
-                <br>
+                <div class="jumbotron" style="padding: 25px; background: #fff; margin: 0">
+                  <h3 class="display-6">PLAYER:&nbsp;{{ player.username }}</h3>
+                    <hr class="my-3">
+                    <a href="{% url 'record:user_record' %}?player_id={{ player.pk }}&difficulty=1" class="badge badge-primary">Beginner</a>
+                    <a href="{% url 'record:user_record' %}?player_id={{ player.pk }}&difficulty=2" class="badge badge-success">Intermediate</a>
+                    <a href="{% url 'record:user_record' %}?player_id={{ player.pk }}&difficulty=3" class="badge badge-danger">Expert</a>
+                </div>
                 <table class="table table-striped">
                     <thead>
                     <tr>

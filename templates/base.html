@@ -29,16 +29,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'index' %}">Minesweeper</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Rank
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'record:record_list'%}?difficulty=1">Beginner</a>
-                        <a class="dropdown-item" href="{% url 'record:record_list'%}?difficulty=2">Intermediate</a>
-                        <a class="dropdown-item" href="{% url 'record:record_list'%}?difficulty=3">Expert</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'record:record_list'%}?difficulty=1">Rank</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Community</a>
@@ -92,7 +84,8 @@
     </div>
 </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js"></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.1/less.min.js" ></script>#}
+    <script src="{% static 'js/less.min.js' %}"  ></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

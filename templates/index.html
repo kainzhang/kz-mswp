@@ -2,54 +2,90 @@
 {% load static %}
 
 {% block head %}
-    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/minesweeper.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/minesweeper.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
-    <div class="container">
-        <div class="card rounded ">
-            <div class="card-body">
-                <div class="row">
-                    <div class="">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:"
-                               onclick="init(10,10,1); setDifficulty(1);">Beginner</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:" onclick="init(16,16,40); setDifficulty(2)">Intermediate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:" onclick="init(30,16,99); setDifficulty(3)">Expert</a>
-                        </li>
-                    </ul>
-
-                    <div id="mswp-submenu">
-                        Mine：<span id="lastnum"></span>
-                        Time：<span id="time"></span>s
-                        <span id="warning" style="color:red;"></span>
-                    </div>
-                    <div id="mswp-container">
-
-                    </div>
-                    <form id="record-form" action="{% url 'record:record_insert' %}" method="post"> {% csrf_token %}
-                        <input type="text" name="player" value="{{ user.id }}" hidden>
-                        <select id="difficulty" name="difficulty" hidden>
-                            <option value="1">Beginner</option>
-                            <option value="2">Intermediate</option>
-                            <option value="3">Expert</option>
-                            <option value="4">Custom</option>
-                        </select>
-                        <input type="text" id="finish_time" name="finish_time" hidden>
-                    </form>
-                </div>
-
-                </div>
-            </div>
+  <div class="container">
+    <div class="card rounded ">
+      <div class="card-body">
+        <div class="jumbotron" style="padding: 25px; background: #fff; margin: 0">
+          <h3 class="display-6">Select the difficulty level and start your game</h3>
+          <hr class="my-3">
+{#          10  40   99#}
+          <a href="javascript:" onclick="init(10,10,1); setDifficulty(1);" class="badge badge-success">&nbsp;Beginner&nbsp;</a>
+          <a href="javascript:" onclick="init(16,16,5); setDifficulty(2)" class="badge badge-primary">&nbsp;Intermediate&nbsp;</a>
+          <a href="javascript:" onclick="init(30,16,10); setDifficulty(3)" class="badge badge-danger">&nbsp;Expert&nbsp;</a>
         </div>
+
+        <img id="mswp-banner" src="https://cdn.jsdelivr.net/gh/kainzhang/kz-img/blog/common/daniel-cheung-cPF2nlWcMY4-unsplash.jpg" class="img-fluid" alt="Responsive image">
+
+          <div id="mswp-submenu" hidden>
+            <span>Time</span>&nbsp;<span id="time" class="badge badge-light">0</span>
+            <span style="margin-left: 100px">Mine</span>&nbsp;<span id="lastnum" class="badge badge-light"></span>
+            <br>
+          </div>
+          <div id="mswp-container">
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Your Win! Submit your record!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form id="record-form" action="{% url 'record:record_insert' %}" method="post">
+                  {% csrf_token %}
+
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="player">Player ID</label>
+                      <input type="text" class="form-control" id="player" name="player_id" value="{{ user.id }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="difficulty">Difficulty</label>
+                      <select class="form-control" id="difficulty" name="difficulty" disabled>
+                        <option value="1">Beginner</option>
+                        <option value="2">Intermediate</option>
+                        <option value="3">Expert</option>
+                        <option value="4">Custom</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="finish_time">Finish Time</label>
+                      <input class="form-control" type="text" id="finish_time" name="finish_time" readonly>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onclick="$('#difficulty').removeAttr('disabled');">Submit</button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Modal End -->
+      </div>
     </div>
+  </div>
+
+  <script type="text/javascript">
+    Window.onload = function(){
+      init(10,10,1);
+      setDifficulty(1);
+    }
+  </script>
+
 
 {% endblock %}
 

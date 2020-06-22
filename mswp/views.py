@@ -88,8 +88,7 @@ def register(request):
         username = form.cleaned_data['username']
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
-        user = User.objects.create_user(username, email, password)
-        user.save()
+        User.objects.create_user(username, email, password)
 
         user = auth.authenticate(username=username, password=password)
         auth.login(request, user)

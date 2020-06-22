@@ -51,6 +51,8 @@ $(function () {
 
 //初始化
 function init(x, y, mine) {
+    $('#mswp-submenu').removeAttr('hidden');
+    $('#mswp-banner').hide();
     countNum = x * y;
     inGame = 2;
     lastNum = mine;
@@ -207,9 +209,10 @@ function endGame(isWin) {
         }
     }
     if (isWin) {
-        $('#record-form').submit();
+        $('#staticBackdrop').modal('show');
     }
-    $('#warning').text(isWin ? 'You Win!' : 'You Lose!');
+
+    // $('#warning').text(isWin ? 'You Win!' : 'You Lose!');
 }
 
 //设置难度

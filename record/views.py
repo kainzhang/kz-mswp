@@ -39,7 +39,7 @@ def user_record(request):
 
 
 def record_insert(request):
-    player_id = request.POST.get('player')
+    player_id = request.POST.get('player_id')
     difficulty = request.POST.get('difficulty')
     finish_time = request.POST.get('finish_time')
 

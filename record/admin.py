@@ -12,3 +12,7 @@ class RecordAdmin(admin.ModelAdmin):
 @admin.register(BestRecord)
 class RecordAdmin(admin.ModelAdmin):
     list_display = ('player', 'difficulty', 'finish_time', 'create_time')
+
+
+admin.site.site_title = "LOKKA"
+admin.site.site_header = "Minesweeper Admin"

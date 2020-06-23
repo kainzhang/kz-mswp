@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="jumbotron" style="padding: 25px; background: #fff; margin: 0">
-                  <h3 class="display-6">PLAYER:&nbsp;{{ player.username }}</h3>
+                  <h3 class="display-6">Player:&nbsp;{{ player.username }}</h3>
                     <hr class="my-3">
                     <a href="{% url 'record:user_record' %}?player_id={{ player.pk }}&difficulty=1" class="badge badge-success">&nbsp;Beginner&nbsp;</a>
                     <a href="{% url 'record:user_record' %}?player_id={{ player.pk }}&difficulty=2" class="badge badge-primary">&nbsp;Intermediate&nbsp;</a>

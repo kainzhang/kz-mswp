@@ -10,7 +10,7 @@ from record.models import Record, BestRecord
 def record_list(request):
     context = {}
     difficulty = int(request.GET.get('difficulty', default=1))
-    objs = BestRecord.objects.filter(difficulty=difficulty)
+    objs = BestRecord.objects.filter(difficulty=difficulty).order_by('finish_time')
     context['object_list'] = objs
 
     if difficulty == 1:
@@ -30,7 +30,7 @@ def user_record(request):
     player = get_object_or_404(User, pk=player_id)
 
     if player is not None:
-        objs = Record.objects.filter(Q(player_id=player_id) & Q(difficulty=difficulty))
+        objs = Record.objects.filter(Q(player_id=player_id) & Q(difficulty=difficulty)).order_by('finish_time')
         data['object_list'] = objs.order_by('finish_time')
         data['player'] = player
         return render(request, 'user_record.html', data)
